@@ -10,6 +10,40 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select * from board order by ref desc, step
 </select>
 
+<!-- idx number(3) primary key,
+	name varchar2(100),
+	subject varchar2(255),
+	content clob,
+	pwd varchar2(100), 
+	ip varchar2(100),
+	regdate date,
+	readhit number(3) default 0,
+	ref number(3),
+	step number(3), 
+	depth number(3) -->
+	<!-- 새글 쓰기 ( 댓글 아님 ) -->
+	<!-- insert,update,delete에서는 resultType 설정불가능 : 자동으로 정수형으로 지정된다. -->
+<insert id="board_insert" parameterType="board">
+	insert into board values
+	(
+	seq_board_idx.nextval,
+	#{name},
+	#{subject},
+	#{content},
+	#{pwd},
+	#{ip},
+	sysdate,
+	0,
+	seq_board_idx.currval,
+	0,
+	0
+	)
+</insert>
+
+<select id="board_one" resultType="board" parameterType="_int">
+	SELECT * FROM BOARD WHERE IDX = #{idx}
+</select>
+
 </mapper>
 
 

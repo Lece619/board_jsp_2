@@ -71,6 +71,4 @@ public class BoardVO {
 		this.regdate = regdate;
 	}
 	
-	
-
 }

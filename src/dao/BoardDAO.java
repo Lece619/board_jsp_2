@@ -30,11 +30,30 @@ public class BoardDAO {
 	
 	//게시판 목록 조회
 	public List<BoardVO> selectList(){
-		SqlSession sqlSession = factory.openSession();
+		SqlSession sqlSession = factory.openSession(true);
 		List<BoardVO> list = sqlSession.selectList("b.board_list");
 		
 		sqlSession.close();
 		return list;
 	}
 
+
+	public int insert(BoardVO vo) {
+		SqlSession sqlSession = factory.openSession(true); // 자동으로 커밋
+		int res = sqlSession.insert("b.board_insert",vo);
+
+		sqlSession.close();
+		return res;
+	}
+	
+	//하나의 인덱스 가져오기
+	public BoardVO selectOne(int idx) {
+		SqlSession sqlSession = factory.openSession();
+		BoardVO vo = sqlSession.selectOne("b.board_one",idx);
+		sqlSession.close();
+		return vo;
+	}
+	
+	//조회수 하나 올리기
+	
 }
