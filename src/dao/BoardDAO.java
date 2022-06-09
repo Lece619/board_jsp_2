@@ -53,6 +53,15 @@ public class BoardDAO {
 		sqlSession.close();
 		return vo;
 	}
+
+
+	public int update_readhit(int idx) {
+		SqlSession sqlSession = factory.openSession(true);
+		
+		int res = sqlSession.update("b.update_readhit",idx);
+		sqlSession.close();
+		return res;
+	}
 	
 	//조회수 하나 올리기
 	

@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.BoardDAO;
 import vo.BoardVO;
@@ -27,7 +28,11 @@ public class BoardListAction extends HttpServlet {
 		List<BoardVO> list = BoardDAO.getInstance().selectList();
 		
 		request.setAttribute("list", list);
-		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("show")!=null) {
+			session.removeAttribute("show");
+		}
+	
 		RequestDispatcher disp = request.getRequestDispatcher("board_list.jsp");
 		
 		disp.forward(request, response);
