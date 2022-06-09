@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+<!-- 리소스를 미리 준비해두고 DB에 연결해야 하는 상황에 
+찾아서 사용하는 구조를 JNDI(Java Naming Directory Interface)라고 한다.
+resource는 하나의 context에 여러개를 넣을 수 있다. -->
+	<Resource 
+	        auth="Container" 
+      		name="jdbc/oracle_test"
+      		type="javax.sql.DataSource"
+      		driverClassName="oracle.jdbc.driver.OracleDriver"
+      		factory="org.apache.commons.dbcp.BasicDataSourceFactory"
+      		url="jdbc:oracle:thin:@localhost:1521:xe"
+      		username="test_pm" password="1111" 
+      		maxActive="20" maxIdle="10" maxWait="1"/>
+      		<!-- maxActive(최대연결수) : 현재 프로젝트에서 오라클DB에 연결하는 시간이 
+      		1초라고 가정을 한다면, 20명이 동시에 접속을 시도할 경우 20번째 사람은 20초 뒤에 DB로 접속을 할 수 있다는 이야기.
+      		>> 인당 1초씩 기다림
+      		따라서 미리 10명이 접속을 할 수 있도록 준비를 해두면 대기시간 없이 DB에 효율적으로 접근할 수 있다. 
+      		이를 DBCP(Data Base Connection Pool 이라고 한다. -->
+      		
+</Context>
