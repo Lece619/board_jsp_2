@@ -23,6 +23,7 @@ public class BoardDAO {
 		return single;
 	}
 	
+	
 	public BoardDAO() {
 		factory=MyBatisConnector.getInstance().getFactory();
 	}
