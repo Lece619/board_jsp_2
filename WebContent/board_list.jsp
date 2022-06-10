@@ -39,19 +39,34 @@
 				<c:out value="${vo.idx}"></c:out>
 				</td>
 				<td>
-				<c:forEach begin="1" end="${vo.depth}">&nbsp;</c:forEach>
-				<!-- 댓글기호달기 -->
-				<c:if test="${vo.depth ne 0}">ㄴ</c:if>
-				<a href="view.do?idx=${vo.idx}">
-				<font color="black">${vo.subject}</font>
-				</a>
+				<c:if test="${vo.del_info ne -1}">
+					<c:forEach begin="1" end="${vo.depth}">&nbsp;</c:forEach>
+					<!-- 댓글기호달기 -->
+					<c:if test="${vo.depth ne 0}">ㄴ</c:if>
+					<a href="view.do?idx=${vo.idx}">
+					<font color="black">${vo.subject}</font>
+					</a>
+				</c:if>
+				<c:if test="${vo.del_info eq -1}">
+					<c:forEach begin="1" end="${vo.depth}">&nbsp;</c:forEach>
+					<!-- 댓글기호달기 -->
+					<c:if test="${vo.depth ne 0}">ㄴ</c:if>
+						<font color="gray">${vo.subject}</font>
+				</c:if>
 				</td>
 				<td>
 				<c:out value="${vo.name}"></c:out>
 				</td>
-				<td align="center">
-				<c:out value="${fn:split(vo.regdate, ' ')[0]}"></c:out>
-				</td>
+				<c:if test="${vo.del_info ne -1 }">
+					<td align="center">
+					<c:out value="${fn:split(vo.regdate, ' ')[0]}"></c:out>
+					</td>
+				</c:if>
+				<c:if test="${vo.del_info eq -1 }">
+					<td align="center">
+					unknown
+					</td>
+				</c:if>
 				<td align="center">
 				<c:out value="${vo.readhit}"></c:out>
 				</td>

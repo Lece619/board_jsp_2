@@ -80,7 +80,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <update id="del_update" parameterType="board">
 	UPDATE BOARD
-	SET subject = #{subject}, name = #{name}, content = #{content} ,del_info = -1
+	SET subject = #{subject}, name = #{name} ,del_info = -1
 	WHERE idx = #{idx}
 </update>
 </mapper>
