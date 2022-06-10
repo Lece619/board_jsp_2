@@ -22,6 +22,7 @@ public class BoardViewAction extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		//view.do?idx=ooo;
 		int idx = Integer.parseInt(request.getParameter("idx"));
 		
@@ -42,7 +43,6 @@ public class BoardViewAction extends HttpServlet {
 		request.setAttribute("vo", vo);
 		RequestDispatcher disp = request.getRequestDispatcher("board_view.jsp");
 		disp.forward(request, response);
-		
 		
 	}
 

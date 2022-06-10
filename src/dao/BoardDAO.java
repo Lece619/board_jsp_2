@@ -55,6 +55,7 @@ public class BoardDAO {
 	}
 
 
+	//조회수 하나 올리기
 	public int update_readhit(int idx) {
 		SqlSession sqlSession = factory.openSession(true);
 		
@@ -63,6 +64,31 @@ public class BoardDAO {
 		return res;
 	}
 	
-	//조회수 하나 올리기
+	//댓글 추가를 위한 step + 1
+	public int update_step(BoardVO base_vo){
+		SqlSession sqlSession = factory.openSession(true);
+		
+		int res = sqlSession.update("b.board_update_step",base_vo);
+		sqlSession.close();
+		return res;
+	}
+
+
+	public int reply(BoardVO vo) { 
+		SqlSession sqlSession = factory.openSession(true);
+		
+		int res = sqlSession.insert("b.board_reply",vo);
+		sqlSession.close();
+		return res;
+	}
+
+
+	public int del_update(BoardVO baseVO) {
+SqlSession sqlSession = factory.openSession(true);
+		
+		int res = sqlSession.update("b.del_update",baseVO);
+		sqlSession.close();
+		return res;
+	}
 	
 }
