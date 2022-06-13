@@ -40,7 +40,9 @@ public class BoardViewAction extends HttpServlet {
 		
 		
 		//상세보기 페이지로 전환하기 위해 바인딩 및 포워딩을 해준다.
+		int page = Integer.parseInt(request.getParameter("page"));
 		request.setAttribute("vo", vo);
+		request.setAttribute("page", page );
 		RequestDispatcher disp = request.getRequestDispatcher("board_view.jsp");
 		disp.forward(request, response);
 		

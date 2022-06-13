@@ -6,8 +6,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- mapper : DB에 쿼리문을 요청하고 결과를 돌려받는 속성파일 -->
 <!-- 세미콜론 (;)을 절대 쓰지 않는다! 
 + select타입에는 항상 resultType을 작성해주어야 함!-->
-<select id="board_list" resultType="board">
+
+<select id="board_list2" resultType="board">
 	select * from board order by ref desc, step
+</select>
+
+<select id="board_list" resultType="board" parameterType="java.util.HashMap">
+	select * from (select rank() over(order by ref desc,step) no, b.* 
+		from board b)
+		where no between #{start} and #{end}
+</select>
+<!-- 전체 게시물 개수 조회 -->
+<select id="board_count" resultType="_int">
+	SELECT COUNT(*) FROM board
 </select>
 
 <!-- idx number(3) primary key,
@@ -83,6 +94,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	SET subject = #{subject}, name = #{name} ,del_info = -1
 	WHERE idx = #{idx}
 </update>
+
+
+
 </mapper>
 
 

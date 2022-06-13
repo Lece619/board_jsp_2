@@ -33,6 +33,7 @@
 <body>
 	<form name="f" method="post" action="reply.do">
 	<input type="hidden" name="idx" value="${param.idx}">
+	<input type="hidden" name="page" value="${param.page}">
 		<table border="1">
 			<caption>:::댓글 쓰기:::</caption>
 			<tr>
@@ -55,7 +56,7 @@
 				
 				<td colspan="2">
 					<img src="img/btn_reg.gif" onclick="send_check();" style="cursor:pointer;">
-					<img src="img/btn_back.gif" onclick="location.href='board_list.do" style="cursor:pointer;">
+					<img src="img/btn_back.gif" onclick="location.href='board_list.do?page=${param.page}'" style="cursor:pointer;">
 				</td>	
 			</tr>
 		

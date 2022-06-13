@@ -10,7 +10,7 @@
 <script src="js/httpRequest.js"></script>
 <script>
 	function reply(){
-		location.href="reply_form.jsp?idx=${vo.idx}";
+		location.href="reply_form.jsp?idx=${vo.idx}&page=${param.page}";
 	}
 	function del(){
 		if(!confirm("삭제하시겠습니까?")){
@@ -79,7 +79,7 @@
 		<tr>
 			<td colspan="2">
 				<!-- 목록보기 -->
-				<img src="img/btn_list.gif" onclick="location.href='board_list.do'" style="cursor:pointer;">
+				<img src="img/btn_list.gif" onclick="location.href='board_list.do?page=${param.page}'" style="cursor:pointer;">
 				<!-- 2개이상 답변금지 -->
 				<c:if test="${vo.depth lt 2}">
 				<!-- 답변 -->

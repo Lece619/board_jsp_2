@@ -55,7 +55,7 @@
 			<tr>
 				<td colspan="2">
 					<img src="img/btn_reg.gif" onclick="send_check();" style="cursor:pointer;">
-					<img src="img/btn_back.gif" onclick="location.href='board_list.do'" style="cursor:pointer;">
+					<img src="img/btn_back.gif" onclick="location.href='board_list.do?page=1'" style="cursor:pointer;">
 				</td>
 			</tr>
 		</table>

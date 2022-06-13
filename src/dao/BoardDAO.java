@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -28,10 +29,27 @@ public class BoardDAO {
 		factory=MyBatisConnector.getInstance().getFactory();
 	}
 	
-	//게시판 목록 조회
+	//게시판 목록 전체 조회
 	public List<BoardVO> selectList(){
 		SqlSession sqlSession = factory.openSession(true);
-		List<BoardVO> list = sqlSession.selectList("b.board_list");
+		List<BoardVO> list = sqlSession.selectList("b.board_list2");
+		
+		sqlSession.close();
+		return list;
+	}
+	
+	//전체 게시물 수 조회
+	public int getRowTotal() {
+		SqlSession sqlSession = factory.openSession();
+		int count = sqlSession.selectOne("b.board_count");
+		
+		sqlSession.close();
+		return count;
+	}
+	
+	public List<BoardVO> selectList(HashMap<String, Integer> map){
+		SqlSession sqlSession = factory.openSession(true);
+		List<BoardVO> list = sqlSession.selectList("b.board_list", map);
 		
 		sqlSession.close();
 		return list;
@@ -90,5 +108,7 @@ SqlSession sqlSession = factory.openSession(true);
 		sqlSession.close();
 		return res;
 	}
+	
+	
 	
 }

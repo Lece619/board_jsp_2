@@ -22,6 +22,11 @@
 	private String name,subject,content,pwd,ip,regdate;
 	 -->
 <body>
+	<c:if test="${list eq null}">
+		<script>
+			location.replace("board_list.do?page=1");
+		</script>
+	</c:if>
 	<table border="1" width="700">
 		<tr>
 			<td colspan="5"><img src="img/title_04.gif"></td>
@@ -43,7 +48,7 @@
 					<c:forEach begin="1" end="${vo.depth}">&nbsp;</c:forEach>
 					<!-- 댓글기호달기 -->
 					<c:if test="${vo.depth ne 0}">ㄴ</c:if>
-					<a href="view.do?idx=${vo.idx}">
+					<a href="view.do?idx=${vo.idx}&page=${param.page}">
 					<font color="black">${vo.subject}</font>
 					</a>
 				</c:if>
@@ -73,8 +78,9 @@
 			</tr>
 		</c:forEach>
 		<tr>
+			
 			<td colspan="5" align="center">
-						◀ 1 2 3 ▶	
+				${pageMenu}	
 			</td>
 		</tr>
 		<tr>

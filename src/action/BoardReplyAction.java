@@ -58,7 +58,8 @@ public class BoardReplyAction extends HttpServlet {
 		int res = dao.reply(vo);
 		
 		if( res > 0) {
-			resp.sendRedirect("board_list.do");
+			int page = Integer.parseInt(req.getParameter("page"));
+			resp.sendRedirect("board_list.do?page="+page);
 		}
 	}
 }
